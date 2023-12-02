@@ -6,21 +6,9 @@
 <h1>Django Htmx Daisy-Ui</h1>
 {% if user.is_authenticated %}
 
-    <h1 class="prose-2xl mb-4">{{ user.username }}'s To-Do list</h1>
+    <h1 class="prose-2xl mb-4">Hi {{ user.username }}</h1>
+    <a href="todo">ToDo</a>
 
-    <table class="table table-zebra table-lg">
-        <thead>
-            <tr>
-                <th>Description</th>
-                <th>Created</th>
-                <th>Completed</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody id="todo-table-body">
-        
-        </tbody>
-    </table>
 {% else %}
 <a href="accounts/login">Sign In</a>
 <a href="accounts/signup">Sign Up</a>

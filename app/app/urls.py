@@ -21,6 +21,6 @@ from todo.views import Home
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')), # new
-    path('todo', Home.as_view(), name='home'), # new
-    path('', include('todo.urls')),
+    path('', Home.as_view(), name='home'), # new
+    path('todo/', include('todo.urls')),
 ]
