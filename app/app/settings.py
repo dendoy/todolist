@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'allauth.account', # new
     'allauth.socialaccount', # new
     #'allauth.socialaccount.providers.github', # new
+    'widget_tweaks',
+    "template_partials",
 ]
 
 MIDDLEWARE = [
