@@ -1,4 +1,8 @@
-app/db.sqlite3
-app/app/__pycache__/*
-app/todo/__pycache__/*
-app/user/__pycache__/*
+*.pyc
+*.sqlite3
+dist/
+/static
+.env
+node_modules
+style.min.css
+.scannerwork
