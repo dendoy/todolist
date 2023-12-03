@@ -1,0 +1,64 @@
+{% extends "account/base.html" %}
+{% load allauth i18n socialaccount %}
+{% block head_title %}
+    {% trans "Signup" %}
+{% endblock head_title %}
+{% block content %}
+    <h1 class="text-3xl font-semibold text-center text-purple-700">SIGN UP</h1>
+    <p>
+        {% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
+    </p>
+    {% url 'account_signup' as action_url %}
+    {% element form form=form method="post" action=action_url tags="entrance,signup" %}
+        {% slot body %}
+            {% csrf_token %}
+
+            <div>
+                <label class="label" for="id_username"> 
+                    <span class="text-base label-text">Username</span>
+                </label>
+                <input type="text" name="login" placeholder="Username" autocomplete="username" minlength="5" maxlength="150" required="" id="id_username" class="w-full input input-bordered input-primary" />
+            </div>
+
+            <div>
+                <label class="label" for="id_email"> 
+                    <span class="text-base label-text">Email (optional)</span>
+                </label>
+                <input type="email" name="email" placeholder="Email address" autocomplete="email" maxlength="320" id="id_email" class="w-full input input-bordered input-primary" />
+            </div>
+
+            <div>
+                <label class="label" for="id_password1"> 
+                    <span class="text-base label-text">Password</span>
+                </label>
+                <input type="password" name="password1" placeholder="Password" autocomplete="new-password" required="" id="id_password1" class="w-full input input-bordered input-primary" />
+            </div>
+
+            <div>
+                <label class="label" for="id_password2"> 
+                    <span class="text-base label-text">Password (retype)</span>
+                </label>
+                <input type="password" name="password2" placeholder="Password (again)" autocomplete="new-password" required="" id="id_password2" class="w-full input input-bordered input-primary" />    
+
+                <ul class="list-outside text-sm my-3">
+                    <li>Your password can’t be too similar to your other personal information.</li>
+                    <li>Your password must contain at least 8 characters.</li>
+                    <li>Your password can’t be a commonly used password.</li>
+                    <li>Your password can’t be entirely numeric.</li>
+                </ul>  
+            </div>
+
+            {% if redirect_field_value %}
+                <input type="hidden"
+                       name="{{ redirect_field_name }}"
+                       value="{{ redirect_field_value }}" />
+            {% endif %}
+        {% endslot %}
+        {% slot actions %}
+            <div>
+                <button class="btn btn-primary">Sign Up</button>
+            </div>
+        {% endslot %}
+    {% endelement %}
+    {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+{% endblock content %}
