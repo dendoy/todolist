@@ -40,6 +40,15 @@ def complete_todo(request,pk):
     context = {'todo':todo}
     return render(request,'todo.html#todoitem-partial', context)
 
+@login_required
+@require_POST
+def uncomplete_todo(request,pk):
+    todo = get_object_or_404(Todo, pk=pk, user=request.user)
+    todo.is_completed =False
+    todo.save()
+    context = {'todo':todo}
+    return render(request,'todo.html#todoitem-partial', context)
+
 
 @login_required
 @require_http_methods('DELETE')
